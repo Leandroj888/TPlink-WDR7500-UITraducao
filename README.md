@@ -34,5 +34,7 @@ SCREENSHOT
 
 
 =======
-Zollner Robert 			/ 2013 / javascript / TPLINK / WDR7500 - Tradução Básica em Inglês e Scripts - http://goo.gl/a7AkFW
+
+Zollner Robert 			  / 2013 / javascript / TPLINK / WDR7500 - Tradução Básica em Inglês e Scripts - http://goo.gl/a7AkFW
+
 Leandro Jorge Junges	/ 2015 / javascript / TPLINK / WDR7500 - Tradução para Português Brasil
