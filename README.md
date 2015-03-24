@@ -16,7 +16,7 @@ INSTALAÇÃO
 url: https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
 
 2) Faça o download ou abrir este script com o Firefox e deixe greasemonkey para instalar o script
-https://github.com/Lupul/TPlink-WDR7500-UITranslate/raw/master/TPlink-WDR7500-translate.user.js
+https://github.com/Leandroj888/TPlink-WDR7500-UITraducao/blob/master/TPlink-WDR7500-translate.user.js
 
 3) Abrir ou Atualizar a interface web TPLINK WDR7500: http://192.168.1.1
 
