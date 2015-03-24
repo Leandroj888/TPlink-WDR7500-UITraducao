@@ -30,7 +30,7 @@ b) Ferramentas -> Greasemonkey -> Gerenciar scripts de usuário -> Opções -> p
 
 SCREENSHOT
 ==========
-! [Screenshot] (https://github.com/Lupul/TPlink-WDR7500-UITranslate/raw/master/screenshot.png)
+https://cloud.githubusercontent.com/assets/11631334/6803694/2dcdf5fc-d218-11e4-9c4b-2a3123e84a5b.png
 
 
 =======
