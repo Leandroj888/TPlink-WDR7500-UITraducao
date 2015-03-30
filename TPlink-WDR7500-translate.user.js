@@ -1,10 +1,9 @@
 // ==UserScript==
 // @name          TPlink WDR7500 WEB-UI Portugês Brasil
-// @description   Autor: Zollner Robert - Leandro Jorge Junges
+// @description   Author: Zollner Robert - Leandro Jorge Junges
 // @version       0.1
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
 // @include       http://192.168.1.1/*
-// @include       http://192.168.2.1/*
 // @include       http://192.168.3.1/*
 // @include       http://192.168.50.133/*
 // @include       http://192.168.55.5/*
@@ -736,7 +735,40 @@ var dict_ch2eng_options = {
 	
 };
 
-
+function findAndReplace(searchText, replacement, searchNode) {
+    if (!searchText || typeof replacement === 'undefined') {
+        // Throw error here if you want...
+        return;
+    }
+    var regex = typeof searchText === 'string' ?
+                new RegExp(searchText, 'g') : searchText,
+        childNodes = (searchNode || document.body).childNodes,
+        cnLength = childNodes.length,
+        excludes = 'html,head,style,title,link,meta,script,object,iframe';
+    while (cnLength--) {
+        var currentNode = childNodes[cnLength];
+        if (currentNode.nodeType === 1 &&
+            (excludes + ',').indexOf(currentNode.nodeName.toLowerCase() + ',') === -1) {
+            arguments.callee(searchText, replacement, currentNode);
+        }
+        if (currentNode.nodeType !== 3 || !regex.test(currentNode.data) ) {
+            continue;
+        }
+        var parent = currentNode.parentNode,
+            frag = (function(){
+                var html = currentNode.data.replace(regex, replacement),
+                    wrap = document.createElement('div'),
+                    frag = document.createDocumentFragment();
+                wrap.innerHTML = html;
+                while (wrap.firstChild) {
+                    frag.appendChild(wrap.firstChild);
+                }
+                return frag;
+            })();
+        parent.insertBefore(frag, currentNode);
+        parent.removeChild(currentNode);
+    }
+}
 
 var dict_ch2eng_all={};
 $.extend(dict_ch2eng_all, dict_ch2eng, dict_ch2eng_btn, dict_ch2eng_title, dict_ch2eng_options, dict_ch2eng_description ); 
@@ -754,7 +786,8 @@ $('document').ready(function(){
 		});
 
 	}
-
+	
+	
 	// Buttons
 	$('input.button').each(function() {
 		var target_text = String.trim( $(this).val() );
@@ -805,5 +838,27 @@ $('document').ready(function(){
 			}
 		});
 	});
+	
+	
+	for (var prop in dict_ch2eng_description) {
+		findAndReplace(prop, dict_ch2eng_description[prop], "");
+	}
+	
+	for (var prop in dict_ch2eng_btn) {
+		findAndReplace(prop, dict_ch2eng_btn[prop], "");
+	}
+	
+	for (var prop in dict_ch2eng) {
+		findAndReplace(prop, dict_ch2eng[prop], "");
+	}
+	
+	for (var prop in dict_ch2eng_title) {
+		findAndReplace(prop, dict_ch2eng_title[prop], "");
+	}
+
+	for (var prop in dict_ch2eng_options) {
+		findAndReplace(prop, dict_ch2eng_options[prop], "");
+	}
     
 });
+
